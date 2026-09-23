@@ -1,31 +1,31 @@
 # Lizan - Connect-X Player
 
-**Lizan** è un giocatore automatico per **Connect-X**, generalizzazione di Connect Four in cui il giocatore deve allineare `X` pedine su una griglia di dimensioni variabili.
+**Lizan** is an automated player for **Connect-X**, a generalization of Connect Four in which the player must align `X` pieces on a grid of variable dimensions.
 
-Il giocatore è sviluppato in **Java** e utilizza l'algoritmo **Negascout** per analizzare le possibili mosse e scegliere quella con il miglior risultato stimato.
+The player is developed in **Java** and uses the **Negascout** algorithm to analyze possible moves and select the one with the best estimated outcome.
 
-## 🧠 Algoritmo
+## 🧠 Algorithm
 
-Lizan utilizza **Negascout**, una variante ottimizzata di **Minimax** basata sulla potatura **Alpha-Beta**.
+Lizan uses **Negascout**, an optimized variant of **Minimax** based on **Alpha-Beta pruning**.
 
-L'algoritmo esplora l'albero delle possibili mosse e utilizza una funzione di valutazione per stimare la bontà delle posizioni. Negascout sfrutta l'ipotesi che la prima mossa esplorata sia probabilmente la migliore, utilizzando finestre di ricerca più ristrette per ridurre il numero di nodi analizzati.
+The algorithm explores the tree of possible moves and uses an evaluation function to estimate the quality of the positions. Negascout relies on the assumption that the first move explored is likely to be the best one, using narrower search windows to reduce the number of nodes analyzed.
 
-Questo permette a Lizan di esplorare più efficacemente l'albero di gioco entro il tempo a disposizione per ogni mossa.
+This allows Lizan to explore the game tree more efficiently within the time available for each move.
 
-## 🎮 Giocatori di riferimento
+## 🎮 Reference Players
 
-Il framework Connect-X include due giocatori utilizzabili come baseline per il confronto:
+The Connect-X framework includes two players that can be used as baselines for comparison:
 
-* **L0** — seleziona le mosse casualmente.
-* **L1** — è leggermente più avanzato di L0: riconosce le situazioni in cui può vincere o perdere con una singola mossa; negli altri casi sceglie casualmente.
+* **L0**: selects moves randomly.
+* **L1**: is slightly more advanced than L0, as it recognizes situations in which it can win or lose with a single move; otherwise, it selects moves randomly.
 
-Lizan può essere eseguito e confrontato contro entrambi.
+Lizan can be run and compared against both players.
 
-## 🚀 Esecuzione
+## 🚀 Running the Project
 
-### Compilazione
+### Compilation
 
-Dalla directory `connectx/`:
+From the `connectx/` directory:
 
 ```bash
 javac -cp ".." *.java */*.java
@@ -33,7 +33,7 @@ javac -cp ".." *.java */*.java
 
 ### Human vs Lizan
 
-Per giocare contro Lizan:
+To play against Lizan:
 
 ```bash
 java -cp ".." connectx.CXGame 6 7 4 connectx.Lizan.Lizan
@@ -41,7 +41,7 @@ java -cp ".." connectx.CXGame 6 7 4 connectx.Lizan.Lizan
 
 ### Lizan vs L0
 
-Per far giocare Lizan contro il giocatore casuale:
+To have Lizan play against the random player:
 
 ```bash
 java -cp ".." connectx.CXGame 6 7 4 connectx.Lizan.Lizan connectx.L0.L0
@@ -49,42 +49,42 @@ java -cp ".." connectx.CXGame 6 7 4 connectx.Lizan.Lizan connectx.L0.L0
 
 ### Lizan vs L1
 
-Per far giocare Lizan contro il giocatore che riconosce le vittorie e sconfitte immediate:
+To have Lizan play against the player that recognizes immediate wins and losses:
 
 ```bash
 java -cp ".." connectx.CXGame 6 7 4 connectx.Lizan.Lizan connectx.L1.L1
 ```
 
-In questi esempi la partita viene giocata su una griglia **6×7**, con l'obiettivo di allineare **4 pedine**.
+In these examples, the game is played on a **6×7** grid, with the goal of aligning **4 pieces**.
 
 ## 🧪 Player Tester
 
-`CXPlayerTester` permette di eseguire automaticamente più partite tra due giocatori e confrontarne i risultati.
+`CXPlayerTester` allows multiple games to be run automatically between two players and their results to be compared.
 
-### Solo punteggio
+### Score only
 
-Ad esempio, per confrontare Lizan e L1:
+For example, to compare Lizan and L1:
 
 ```bash
 java -cp ".." connectx.CXPlayerTester 6 7 4 connectx.Lizan.Lizan connectx.L1.L1
 ```
 
-### Output dettagliato
+### Detailed output
 
-L'opzione `-v` abilita un output più dettagliato:
+The `-v` option enables more detailed output:
 
 ```bash
 java -cp ".." connectx.CXPlayerTester 6 7 4 connectx.Lizan.Lizan connectx.L1.L1 -v
 ```
 
-### Timeout e numero di partite personalizzati
+### Custom timeout and number of games
 
-È possibile specificare il **timeout per ogni mossa** (`-t`) e il **numero di partite** (`-r`).
+It is possible to specify the **timeout for each move** (`-t`) and the **number of games** (`-r`).
 
-Ad esempio, per un timeout di **1 secondo per mossa** e **10 partite**:
+For example, to set a **1-second timeout per move** and run **10 games**:
 
 ```bash
 java -cp ".." connectx.CXPlayerTester 6 7 4 connectx.Lizan.Lizan connectx.L1.L1 -v -t 1 -r 10
 ```
 
-In tutti gli esempi, i parametri `6 7 4` indicano rispettivamente **6 righe**, **7 colonne** e **4 pedine da allineare**.
+In all examples, the parameters `6 7 4` represent **6 rows**, **7 columns**, and **4 pieces to align**, respectively.
